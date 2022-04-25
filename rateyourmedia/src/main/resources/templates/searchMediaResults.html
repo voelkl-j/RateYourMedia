@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="common/header :: head"/>
+
+<body>
+<header th:replace="common/header :: navigation"/>
+<div th:replace="searchStart :: Searchbar"/>
+
+<div class="container w-50 pt-5">
+    <table class="table table-dark table-striped table-hover table-responsive">
+        <thead>
+        <tr>
+            <th scope="col">Title</th>
+            <th  scope="col">Media Type</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="Media : ${Medias}">
+            <th scope="row"><label th:text="${Media.getTitle()}"/></th>
+            <td><label th:text="${Media.getMediaType()}"/></td>
+            <!-- Hier nicht möglich Button als Fragment einzufügen, da Methoden von Media != Methoden von Book/Movie -->
+            <td><form th:action="@{/media/detail/0}" th:method="get">
+                <input type="hidden" th:value="${Media.getMediaID()}" th:name="mediaID"/>
+                <input type="hidden" th:value="${Media.getMediaType()}" th:name="mediaType"/>
+                <button type="submit" class="btn btn-dark">Details</button></form></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>

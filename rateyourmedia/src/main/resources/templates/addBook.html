@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="common/header :: head"/>
+
+<body>
+<header th:replace="common/header :: navigation"/>
+
+<div class="container w-50 pt-5">
+    <div class="container w-75">
+        <h3>Add a new Book</h3>
+<form action="/book" method="post">
+    <div  th:object="${Media}">
+    <div class="form-group w-50">
+        <label for="title">Title:</label>
+        <input th:field="*{title}" type="text" class="form-control" id="title">
+    </div>
+    <div class="form-group pt-2">
+        <label for="description">Description:</label>
+        <textarea th:field="*{description}" class="form-control" id="description" rows="3"></textarea>
+    </div>
+    </div>
+    <div class="pt-2 pb-2" th:object="${Book}">
+    <div class="form-group w-50">
+        <label for="author">Author:</label>
+        <input th:field="*{author}" type="text" class="form-control" id="author">
+    </div>
+        <div class="form-group w-50 pt-2">
+            <label for="publication_date">Publication date:</label>
+            <div class="input-group date">
+                <input type="text" class="form-control" id="publication_date" autocomplete="off" th:field="*{publication_date}"/>
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group w-50 pt-2">
+            <label for="isbn">ISBN:</label>
+            <input th:field="*{isbn}" type="number" class="form-control" id="isbn">
+        </div>
+    </div>
+    <button class="btn btn-dark w-25" type="submit">Add</button>
+</form>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script>
+    $('.input-group.date').datepicker({
+        autoclose: true,
+        todayHighlight: true
+    });
+</script>
+</body>
+</html>

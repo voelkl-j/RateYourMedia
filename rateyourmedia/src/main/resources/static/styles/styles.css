@@ -1,0 +1,38 @@
+@import url(https://fonts.googleapis.com/css?family=Lobster);
+@import url(https://fonts.googleapis.com/css?family=Lato);
+body {
+    background: url(/img/Background.png) no-repeat;
+    background-size: cover;
+    color: #FFF;
+    font-family: 'Lato';
+}
+
+.img-container {
+    max-width:500px;
+    max-height: 500px;
+}
+.img-container img {
+    max-height: 400px;
+    height: 70%;
+    width: auto;
+}
+.no-bg {
+    background: black;
+}
+
+.card-size{
+    max-height: 200px;
+}
+
+
+.alert {
+    margin-top: 10px;
+}
+
+
+.alert {
+    background-color: rgba(0, 0, 0, 0.95);
+    display: inline;
+    padding: 10px;
+    color: white;
+}

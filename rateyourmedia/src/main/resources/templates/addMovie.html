@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="common/header :: head"/>
+
+<body>
+<header th:replace="common/header :: navigation"/>
+
+<div class="container w-50 pt-5">
+    <div class="container w-75">
+        <h3>Add a new Movie</h3>
+        <form action="/movie" method="post">
+            <div  th:object="${Media}">
+                <div class="form-group w-50">
+                    <label for="title">Title:</label>
+                    <input th:field="*{title}" type="text" class="form-control" id="title">
+                </div>
+                <div class="form-group pt-2">
+                    <label for="description">Description:</label>
+                    <textarea th:field="*{description}" class="form-control" id="description" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="pt-2 pb-2" th:object="${Movie}">
+                <div class="form-group w-50">
+                    <label for="author">Director:</label>
+                    <input th:field="*{director}" type="text" class="form-control" id="author">
+                </div>
+                <div class="form-group w-50 pt-2">
+                    <label for="duration">Duration:</label>
+                    <input th:field="*{duration}" type="number" class="form-control" id="duration">
+                </div>
+                <div class="form-group w-50 pt-2">
+                    <label for="isbn">MovieID:</label>
+                    <input th:field="*{movieID}" type="number" class="form-control" id="isbn">
+                </div>
+            </div>
+            <button class="btn btn-dark w-25" type="submit">Add</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

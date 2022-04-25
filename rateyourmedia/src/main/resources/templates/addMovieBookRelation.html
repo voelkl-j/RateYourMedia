@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="common/header :: head"/>
+
+<body>
+<header th:replace="common/header :: navigation"/>
+
+<div class="container w-50 pt-5">
+    <div class="container w-75">
+        <h3 class="w-50">Connect a movie adaptation to the book, on which its based on</h3>
+        <form action="/administration/relations" method="post">
+            <div class="form-group w-50 pt-2">
+                <label for="movieID">MovieID:</label>
+                <input th:name="movieID" type="number" class="form-control" id="movieID">
+
+            </div>
+            <div class="form-group w-50 pt-2">
+                <label for="isbn">ISBN:</label>
+                <input th:name="isbn" type="number" class="form-control" id="isbn">
+            </div>
+    <button class="btn btn-dark w-25 pt-2" type="submit">Connect</button>
+    </form>
+</div>
+</div>
+
+</body>
+</html>

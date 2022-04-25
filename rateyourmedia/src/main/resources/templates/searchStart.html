@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="common/header :: head"/>
+<body>
+<header th:replace="common/header :: navigation"/>
+
+<div class="container" th:fragment="Searchbar">
+    <!-- Search bar -->
+    <div class="container w-75 pt-5">
+        <form th:action="@{/search}" th:method="post">
+        <div class="input-group ">
+            <input th:name="searchText" id="searchText" type="search" class="form-control rounded w-50" placeholder="Search Media" aria-label="Search"
+                   aria-describedby="search-addon"/>
+            <select th:name="searchCategory" id="searchType" class="form-control">
+                <optgroup label="Media">
+                    <option th:value="media_title">Title</option>
+                </optgroup>
+                <optgroup label="Book">
+                    <option th:value="book_isbn" name="searchCategory">ISBN</option>
+                    <option th:value="book_title" name="searchCategory">Title</option>
+                    <option th:value="book_author" name="searchCategory">Author</option>
+                </optgroup>
+                <optgroup label="Movie">
+                    <option th:value="movie_title" name="searchCategory">Title</option>
+                    <option th:value="movie_director" name="searchCategory">Director </option>
+                </optgroup>
+            </select>
+            <button type="submit" class="btn btn-dark">Search</button>
+        </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

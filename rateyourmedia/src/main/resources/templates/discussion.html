@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/header :: head"/>
+<body>
+<header th:replace="common/header :: navigation"/>
+
+<!--Message Display-->
+<div class="container float-left w-75 mt-3" th:fragment="review_display(mediaID, mediaType)">
+    <h3>Discussion Thread:</h3>
+    <div th:if="!${#lists.isEmpty(DiscMessages)}" class="w-75 float-left">
+        <ul class="list-group">
+            <li class="list-group-item" th:each="DiscMessage : ${DiscMessages}">
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-dark"><p><span
+                            th:text="${DiscMessage.getSource().getScreenName()}"></span> wrote:</p></li>
+
+                    <li class="list-group-item"><p th:text="${DiscMessage.getText()}"></p></li>
+                </ul>
+            </li>
+            <li class="list-group-item">No more posts :(</li>
+        </ul>
+    </div>
+    <form th:action="@{'/discussion/' + ${page}}" method="get">
+        <div class="row">
+            <div class="form-group col">
+                <button class="btn btn-dark w-25 mt-1" type="submit">Previous Posts</button>
+            </div>
+        </div>
+    </form>
+</div>
+</div>
+
+<!-- Message form-->
+<div class="container w-75 float-left mt-4">
+    <div class="float-left w-75">
+        <h3>Write a post:</h3>
+        <form id="review" action="/discussion" method="post">
+            <div class="row" th:object="${NewMessage}">
+                <div class="row">
+                    <div class="form-group col">
+                        <label>Text:</label>
+                        <textarea class="form-control w-50" rows="5" id="reviewText" th:field="*{text}"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col">
+                        <button class="btn btn-dark w-25 mt-1" type="submit">Post</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

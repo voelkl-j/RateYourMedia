@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="common/header :: head"/>
+
+    <script type="text/javascript" src="/js/coverIm.js"></script>
+<body>
+<header th:replace="common/header :: navigation"/>
+
+<div class="container w-75 float-left">
+    <h1 id="title" th:text="${book.getBaseInformation().getTitle()}"></h1>
+    <div class="container mb-5">
+        <div class="row">
+            <div class="col col-sm-4">
+                <img id="cover">
+            </div>
+            <div class="col col-sm-8">
+                <p class="d-inline">Written by
+                <p id="author" class="d-inline" th:text="${book.getAuthor()}"></p></p>
+                <p class="d-inline">In the year
+                <p id="date" class="d-inline" th:text="${book.getPublication_date()}"></p></p>
+                <p class="d-inline">ISBN:
+                <p id="isbn" class="d-inline" th:text="${book.getIsbn()}"></p> </p>
+                <p class="d-inline">Description:
+                <p id="description" class="d-inline" th:text="${book.getBaseInformation().getDescription()}"></p></p>
+                <p class="d-inline">Movie adaptations:
+                <div th:each="movie : ${book.getMovieAdaptations()}">
+                <p id="movAdapt" class="d-inline"><span th:text="${movie.getBaseInformation().getTitle()}"></span> directed by <span th:text="${movie.getDirector()}"></span></p></p>
+            </div>
+                <p class="d-inline">Rating:
+                <p id="rating" class="d-inline" th:text="${rating}"></p></p>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="common/detail :: review_form (mediaID=${book.getBaseInformation().getMediaID()}, mediaType=${book.getBaseInformation().getMediaType()})"></div>
+<div th:replace="common/detail :: review_display(mediaID=${book.getBaseInformation().getMediaID()}, mediaType=${book.getBaseInformation().getMediaType()})"></div>
+</body>
+</html>

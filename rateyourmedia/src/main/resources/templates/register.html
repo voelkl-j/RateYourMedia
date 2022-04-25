@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="common/header :: head"/>
+
+<body>
+<header th:replace="common/header :: navigation"/>
+
+<div class="container w-50 mt-4">
+    <div class="container w-75">
+        <h3>Registration</h3>
+        <form action="/register" method="post">
+            <div  th:object="${User}">
+                <div class="form-group w-50 mb-2">
+                    <label for="username">Username:</label>
+                    <input th:field="*{username}" type="text" class="form-control" id="username">
+                </div>
+                <div class="form-group w-50 mb-2">
+                    <label for="password">Password:</label>
+                    <input th:field="*{password}" type="text" class="form-control" id="password">
+                </div>
+                <div class="form-group w-50 mb-2">
+                    <label for="first_name">First name:</label>
+                    <input th:field="*{first_name}" type="text" class="form-control" id="first_name">
+                </div>
+                <div class="form-group w-50 mb-2">
+                    <label for="surname">Surname:</label>
+                    <input th:field="*{surname}" type="text" class="form-control" id="surname">
+                </div>
+                <div class="form-group w-50 mb-2">
+                    <label for="date_of_birth">Date of Birth:</label>
+                    <div class="input-group date">
+                        <input type="text" class="form-control" id="date_of_birth" autocomplete="off" th:field="*{date_of_birth}"/>
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-dark w-25" type="submit">Add</button>
+        </form>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script>
+    $('.input-group.date').datepicker({
+        autoclose: true,
+        todayHighlight: true
+    });
+</script>
+</body>
+</html>

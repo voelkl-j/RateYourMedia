@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="common/header :: head"/>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="/js/movieIm.js"></script>
+
+<body>
+<header th:replace="common/header :: navigation"/>
+
+<div class="container w-75 float-left">
+    <h1 id="title" th:text="${movie.getBaseInformation().getTitle()}"></h1>
+    <div class="container mb-5">
+        <div class="row h-25">
+            <div class="col  col-sm-4 h-25">
+                <div id="img" class="img-container">
+                    <img id="poster" class="img-fluid">
+                </div>
+            </div>
+            <div class="col col-sm-8">
+                <p class="d-inline">Directed by
+                <p id="director" class="d-inline" th:text="${movie.getDirector()}"></p></p>
+                <p class="d-inline">Duration:
+                <p id="duration" class="d-inline" ></p><span th:text="${movie.getDuration()}"></span> min</p>
+                <p class="d-inline">Description:
+                <p id="description" class="d-inline" th:text="${movie.getBaseInformation().getDescription()}"></p></p>
+                <p class="d-inline">Based on:
+                <p id="basedON" class="d-inline"><span th:text="${movie.getBasedOn()?.getBaseInformation()?.getTitle()}"></span> written by <span th:text="${movie.getBasedOn()?.getAuthor()}"></span></p></p>
+                <p class="d-inline">Rating:
+                <p id="rating" class="d-inline" th:text="${rating}"></p></p>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="common/detail :: review_form (mediaID=${movie.getBaseInformation().getMediaID()}, mediaType=${movie.getBaseInformation().getMediaType()})"/>
+<div th:replace="common/detail :: review_display(mediaID=${movie.getBaseInformation().getMediaID()}, mediaType=${movie.getBaseInformation().getMediaType()})"></div>
+
+</body>
+</html>

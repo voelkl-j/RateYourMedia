@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/header :: head"/>
+<script type="text/javascript" src="/js/thumbnails.js"></script>
+<body onload="showAllCover()">
+<header th:replace="common/header :: navigation"/>
+<div class="container-fluid m-0 p-0">
+    <!--Newest Movies-->
+    <div class="mt-3">
+        <div class="container-fluid content-row w-75">
+            <div class="row justify-content-center">
+                <h3>Newest Movies</h3>
+            </div>
+
+            <div class="row align-items-stretch">
+                <div class="col" th:each="Movie, iStat : ${Movies}">
+                    <div class="card text-white bg-dark mb-3 h-100">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <img th:id="'poster' + ${iStat.index}" class="img-thumbnail img-fluid">
+                                </div>
+                                <div class="col">
+                                    <h5 class="card-title" th:text="${Movie.getBaseInformation().getTitle()}"
+                                        th:id="'Mtitle' + ${iStat.index}"></h5>
+                                    <p class="card-text">directed by <span th:id="'director' + ${iStat.index}"
+                                                                          th:text="${Movie.getDirector()}"></span></p>
+                                </div>
+                            </div>
+                            <form class="mr-2" method="get" action="/media/detail/0">
+                                <input type="hidden" th:name="mediaType" th:value="${Movie.getBaseInformation().getMediaType()}">
+                                <input type="hidden" th:name="mediaID" th:value="${Movie.getBaseInformation().getMediaID()}">
+                                <button type="submit" class="btn btn-sm btn-outline-secondary">View</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Newest Books-->
+    <div class="mt-3">
+        <div class="container-fluid content-row w-75">
+            <div class="row justify-content-center">
+                <h3>Newest Books</h3>
+            </div>
+
+            <div class="row align-items-stretch">
+                <div class="col" th:each="Book, iStat : ${Books}">
+                    <div class="card text-white bg-dark mb-3 h-100">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <img th:id="'cover' + ${iStat.index}" class="img-thumbnail img-fluid">
+                                </div>
+                                <div class="col">
+                                    <h5 class="card-title" th:text="${Book.getBaseInformation().getTitle()}"
+                                        th:id="'Btitle' + ${iStat.index}"></h5>
+                                    <p class="card-text">written by <span th:id="'author' + ${iStat.index}"
+                                                                          th:text="${Book.getAuthor()}"></span></p>
+                                </div>
+                            </div>
+                            <form class="mr-2" method="get" action="/media/detail/0">
+                                <input type="hidden" th:name="mediaType" th:value="${Book.getBaseInformation().getMediaType()}">
+                                <input type="hidden" th:name="mediaID" th:value="${Book.getBaseInformation().getMediaID()}">
+                                <button type="submit" class="btn btn-sm btn-outline-secondary">View</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Latest Reviews-->
+    <div class="mt-3">
+        <div class="container-fluid content-row w-75">
+            <div class="row justify-content-center">
+                <h3>Latest Reviews</h3>
+            </div>
+
+            <div class="row align-items-stretch">
+                <div class="col" th:each="Review, iStat : ${Reviews}">
+                    <div class="card text-white bg-dark mb-3 h-100">
+                        <div class="card-body">
+                                    <h5 class="card-title" th:text="${Review.getReviewed().getTitle()}"
+                                        th:id="'Btitle' + ${iStat.index}"></h5>
+                                    <p class="card-text">reviewed by <span th:id="'reviewer' + ${iStat.index}"
+                                                                          th:text="${Review.getCreator().getUsername()}"></span></p>
+                            <p class="card-text text-truncate" th:text="${Review.getText()}"></p>
+                            <form class="mr-2" method="get" action="/media/detail/0">
+                                <input type="hidden" th:name="mediaType" th:value="${Review.getReviewed().getMediaType()}">
+                                <input type="hidden" th:name="mediaID" th:value="${Review.getReviewed().getMediaID()}">
+                            <button type="submit" class="btn btn-sm btn-outline-secondary">View</button>
+                            </form>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
